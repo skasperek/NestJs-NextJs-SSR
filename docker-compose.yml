@@ -1,0 +1,8 @@
+version: '3.9'
+
+services:
+  next-ssr:
+    image: ${REGISTRY:-app}/next-ssr:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: ./be/Web
+      dockerfile: ./Dockerfile-local

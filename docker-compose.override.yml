@@ -1,0 +1,6 @@
+version: '3.9'
+
+services:
+  next-ssr:
+    environment:
+      NODE_ENV: dev
