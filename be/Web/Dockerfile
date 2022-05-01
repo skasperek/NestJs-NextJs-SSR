@@ -12,7 +12,7 @@ RUN npm install
 
 COPY --chown=node:node . .
 
-ENV NODE_ENV=prod
+ENV NODE_ENV=production
 
 EXPOSE 3000
 

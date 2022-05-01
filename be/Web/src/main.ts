@@ -1,8 +1,21 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from './DependencyInjection/app.module';
+import { RenderModule } from 'nest-next';
+import Next from 'next';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+const bootstrap = async () => {
+  const app = Next({
+    dev: process.env.NODE_ENV !== 'production',
+  })
+
+  await app.prepare();
+
+  const server = await NestFactory.create(AppModule);
+
+  const renderer = server.get(RenderModule);
+  renderer.register(server, app);
+
+  await server.listen(3000);
 }
+
 bootstrap();
